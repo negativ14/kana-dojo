@@ -6,6 +6,7 @@ import useVisitStore from '../store/useVisitStore';
 import StreakStats from './StreakStats';
 import StreakGrid from './StreakGrid';
 import type { TimePeriod } from '../lib/streakCalculations';
+import { useClick } from '@/shared/hooks/useAudio';
 
 const periodOptions: { value: TimePeriod; label: string; icon: string }[] = [
   { value: 'week', label: 'Week', icon: '📅' },
@@ -14,6 +15,8 @@ const periodOptions: { value: TimePeriod; label: string; icon: string }[] = [
 ];
 
 export default function StreakProgress() {
+  const { playClick } = useClick();
+
   const { visits, isLoaded, loadVisits } = useVisitStore();
   const [period, setPeriod] = useState<TimePeriod>('week');
 
@@ -44,17 +47,20 @@ export default function StreakProgress() {
 
       {/* Period Selector - Improved Design */}
       <div className='flex justify-center'>
-        <div className='inline-flex rounded-2xl bg-[var(--card-color)] border border-[var(--border-color)] p-1.5 gap-1'>
+        <div className='inline-flex rounded-2xl bg-[var(--card-color)] border border-[var(--border-color)] p-2 gap-2'>
           {periodOptions.map(option => (
             <button
               key={option.value}
-              onClick={() => setPeriod(option.value)}
+              onClick={() => {
+                setPeriod(option.value);
+                playClick();
+              }}
               className={clsx(
-                'relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200',
+                'relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all hover:cursor-pointer',
                 'flex items-center gap-2',
                 period === option.value
-                  ? 'bg-[var(--main-color)] text-[var(--background-color)] shadow-sm border-b-4 border-[var(--main-color-accent)]'
-                  : 'text-[var(--secondary-color)] hover:text-[var(--main-color)] hover:bg-[var(--border-color)]/50'
+                  ? 'bg-[var(--main-color)] text-[var(--background-color)]  border-b-4 border-[var(--main-color-accent)]'
+                  : 'text-[var(--secondary-color)] hover:text-[var(--main-color)] border-b-4 border-[var(--card-color)] hover:border-[var(--border-color)]/50 hover:bg-[var(--border-color)]/50'
               )}
             >
               <span className='text-base'>{option.icon}</span>
