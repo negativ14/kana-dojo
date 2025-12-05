@@ -50,19 +50,8 @@ export default function translationGen(t: (key: string) => string) {
             syllabaries of Japanese - Hiragana and Katakana.
           </p>
           <p className='text-lg text-[var(--secondary-color)]'>
-            To begin, select at least 1 group of characters, select or change
+            To begin, select at least 1 set of characters, select or change
             the training mode, then hit <b>Go!</b> below and start training now!
-          </p>
-          <p className='text-lg italic'>
-            New: click on a kanji character to find out more about it on{' '}
-            <a
-              href='https://jisho.org/'
-              className='hover:underline'
-              rel='noopener'
-              target='_blank'
-            >
-              Jisho!
-            </a>
           </p>
         </>
       )
@@ -104,6 +93,17 @@ export default function translationGen(t: (key: string) => string) {
           <p className='text-lg text-[var(--secondary-color)]'>
             To begin, select at least 1 level, select your training mode, then
             hit <b>Go!</b> below and start training!
+          </p>
+          <p className='text-lg italic'>
+            New: click on a word to find out more about it on{' '}
+            <a
+              href='https://jisho.org/'
+              className='hover:underline'
+              rel='noopener'
+              target='_blank'
+            >
+              Jisho!
+            </a>
           </p>
         </>
       )
