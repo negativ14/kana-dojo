@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import useCalligraphyStore from '../store/useCalligraphyStore';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
 
 const WrongStrokeOverlay = () => {
   const showWrongStroke = useCalligraphyStore(state => state.showWrongStroke);

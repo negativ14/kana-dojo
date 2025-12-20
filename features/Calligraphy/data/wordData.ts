@@ -1,4 +1,4 @@
-import { IWordData } from '../store/useCalligraphyStore';
+import { IWordData } from '@/features/Calligraphy/store/useCalligraphyStore';
 
 // Words for Stage 3 practice, organized by starting character
 export const wordDataByCharacter: Record<string, IWordData[]> = {

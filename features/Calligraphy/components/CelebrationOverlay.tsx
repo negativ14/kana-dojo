@@ -1,8 +1,8 @@
 'use client';
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import useCalligraphyStore from '../store/useCalligraphyStore';
-import { getWordForCharacter } from '../data/wordData';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
+import { getWordForCharacter } from '@/features/Calligraphy/data/wordData';
 
 const CelebrationOverlay = () => {
   const showCelebration = useCalligraphyStore(state => state.showCelebration);

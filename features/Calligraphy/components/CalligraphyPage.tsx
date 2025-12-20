@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import useCalligraphyStore from '../store/useCalligraphyStore';
-import { hiraganaData } from '../data/hiraganaStrokes';
-import { katakanaData } from '../data/katakanaStrokes';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
+import { hiraganaData } from '@/features/Calligraphy/data/hiraganaStrokes';
+import { katakanaData } from '@/features/Calligraphy/data/katakanaStrokes';
 import Canvas from './Canvas';
 import CharacterSelector from './CharacterSelector';
 import BrushSelector from './BrushSelector';

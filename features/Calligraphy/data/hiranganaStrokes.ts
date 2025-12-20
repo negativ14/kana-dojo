@@ -1,4 +1,4 @@
-import { ICharacterData } from '../store/useCalligraphyStore';
+import { ICharacterData } from '@/features/Calligraphy/store/useCalligraphyStore';
 
 // All 46 basic Hiragana characters with stroke data
 // Stroke paths are in SVG format, scaled for a 400x350 viewBox

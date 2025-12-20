@@ -1,6 +1,6 @@
 'use client';
 import clsx from 'clsx';
-import useCalligraphyStore from '../store/useCalligraphyStore';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
 
 interface CanvasControlsProps {
   onClear: () => void;

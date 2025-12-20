@@ -1,5 +1,5 @@
 'use client';
-import useCalligraphyStore from '../store/useCalligraphyStore';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
 
 const HowToUseModal = () => {
   const showHowToUse = useCalligraphyStore(state => state.showHowToUse);

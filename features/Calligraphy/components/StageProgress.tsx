@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import useCalligraphyStore, {
   LearningStage
-} from '../store/useCalligraphyStore';
+} from '@/features/Calligraphy/store/useCalligraphyStore';
 
 const stages: { stage: LearningStage; number: number; label: string }[] = [
   { stage: 'stroke', number: 1, label: 'Stroke' },

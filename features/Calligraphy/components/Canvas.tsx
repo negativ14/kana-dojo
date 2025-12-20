@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useEffect, useCallback, useState } from 'react';
-import useCalligraphyStore from '../store/useCalligraphyStore';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
 
 interface Point {
   x: number;

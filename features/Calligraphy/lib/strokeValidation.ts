@@ -1,5 +1,4 @@
-import { IStrokeData } from '../store/useCalligraphyStore';
-
+import { IStrokeData } from '@/features/Calligraphy/store/useCalligraphyStore';
 interface Point {
   x: number;
   y: number;
@@ -324,6 +323,7 @@ export const getStrokeHint = (stroke: IStrokeData): string => {
   return hints[stroke.name] || `Draw the ${stroke.name.toLowerCase()}`;
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   validateStroke,
   validateCharacter,

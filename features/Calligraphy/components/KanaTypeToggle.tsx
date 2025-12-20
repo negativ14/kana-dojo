@@ -1,8 +1,8 @@
 'use client';
 import clsx from 'clsx';
-import useCalligraphyStore from '../store/useCalligraphyStore';
-import { hiraganaData } from '../data/hiraganaStrokes';
-import { katakanaData } from '../data/katakanaStrokes';
+import useCalligraphyStore from '@/features/Calligraphy/store/useCalligraphyStore';
+import { hiraganaData } from '@/features/Calligraphy/data/hiraganaStrokes';
+import { katakanaData } from '@/features/Calligraphy/data/katakanaStrokes';
 
 const KanaTypeToggle = () => {
   const selectedKanaType = useCalligraphyStore(state => state.selectedKanaType);

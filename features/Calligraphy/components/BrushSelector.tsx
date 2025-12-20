@@ -1,6 +1,8 @@
 'use client';
 import clsx from 'clsx';
-import useCalligraphyStore, { BrushType } from '../store/useCalligraphyStore';
+import useCalligraphyStore, {
+  BrushType
+} from '@/features/Calligraphy/store/useCalligraphyStore';
 
 const brushes: {
   type: BrushType;
