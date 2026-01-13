@@ -6,6 +6,8 @@ import {
   Sparkles,
   BookOpen,
   Languages,
+  ChevronDown,
+  ChevronRight,
   type LucideIcon
 } from 'lucide-react';
 import clsx from 'clsx';
@@ -34,6 +36,7 @@ type NavItem = {
 type NavSection = {
   title: string;
   items: NavItem[];
+  collapsible?: boolean;
 };
 
 // ============================================================================
@@ -69,7 +72,8 @@ const staticSecondaryNavSections: NavSection[] = [
 // Base experiments section (without dynamic experiments)
 const baseExperimentsSection: NavSection = {
   title: 'Experiments',
-  items: [{ href: '/experiments', label: 'All Experiments', icon: Sparkles }]
+  items: [{ href: '/experiments', label: 'All Experiments', icon: Sparkles }],
+  collapsible: true
 };
 
 // ============================================================================
@@ -132,15 +136,43 @@ const NavLink = memo(({ item, isActive, onClick, variant }: NavLinkProps) => {
   );
 });
 
+NavLink.displayName = 'NavLink';
+
 type SectionHeaderProps = {
   title: string;
+  collapsible?: boolean;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 };
 
-const SectionHeader = ({ title }: SectionHeaderProps) => (
-  <div className='mt-3 w-full px-4 text-xs text-[var(--main-color)] uppercase opacity-70 max-lg:hidden'>
-    {title}
-  </div>
-);
+const SectionHeader = ({
+  title,
+  collapsible = false,
+  isExpanded = false,
+  onToggle
+}: SectionHeaderProps) => {
+  if (collapsible) {
+    return (
+      <button
+        onClick={onToggle}
+        className='mt-3 flex w-full items-center gap-1 px-4 text-xs text-[var(--main-color)] uppercase opacity-70 transition-opacity hover:opacity-100 max-lg:hidden'
+      >
+        {isExpanded ? (
+          <ChevronDown className='h-3 w-3' />
+        ) : (
+          <ChevronRight className='h-3 w-3' />
+        )}
+        {title}
+      </button>
+    );
+  }
+
+  return (
+    <div className='mt-3 w-full px-4 text-xs text-[var(--main-color)] uppercase opacity-70 max-lg:hidden'>
+      {title}
+    </div>
+  );
+};
 
 // ============================================================================
 // Main Component
@@ -159,6 +191,9 @@ const Sidebar = () => {
   // Lazy load experiments
   const [loadedExperiments, setLoadedExperiments] = useState<Experiment[]>([]);
 
+  // Collapse state for experiments section
+  const [isExperimentsExpanded, setIsExperimentsExpanded] = useState(false);
+
   useEffect(() => {
     // Dynamically import experiments data
     import('@/shared/data/experiments').then(module => {
@@ -173,11 +208,13 @@ const Sidebar = () => {
       ...baseExperimentsSection,
       items: [
         ...baseExperimentsSection.items,
-        ...loadedExperiments.map(exp => ({
-          href: exp.href,
-          label: exp.name,
-          icon: exp.icon || null
-        }))
+        ...(isExperimentsExpanded
+          ? loadedExperiments.map(exp => ({
+              href: exp.href,
+              label: exp.name,
+              icon: exp.icon || null
+            }))
+          : [])
       ]
     }
   ];
@@ -255,7 +292,12 @@ const Sidebar = () => {
       {/* Secondary Navigation Sections */}
       {secondaryNavSections.map(section => (
         <div key={section.title} className='contents'>
-          <SectionHeader title={section.title} />
+          <SectionHeader
+            title={section.title}
+            collapsible={section.collapsible}
+            isExpanded={isExperimentsExpanded}
+            onToggle={() => setIsExperimentsExpanded(!isExperimentsExpanded)}
+          />
           {section.items.map(item => (
             <NavLink
               key={item.href}
